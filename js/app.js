@@ -1,3 +1,10 @@
+
+let gameCards = ['a','b','c'];
+
+function card(event){
+    
+}
+
 function startGame(){
     const gameBoard = document.querySelector('.container');
     

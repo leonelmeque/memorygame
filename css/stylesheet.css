@@ -12,7 +12,7 @@ body {
     display: grid;
     grid-template-rows: 150px 150px 150px 150px;
     grid-template-columns: 150px 150px 150px 150px;
-    grid-gap: 10px 10px;
+    grid-gap: 20px 20px;
   
 }
 
@@ -20,8 +20,8 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
-    /* padding: 30px 0px; */
-    /* background-color: antiquewhite; */
+    padding: 20px 0px;
+ 
 }
 
 .box {
@@ -29,19 +29,17 @@ main {
     height: 100%;
     background: #c95656;
     border-radius: 10px;
-    z-index:1;
 }
 
 .board-table{
     width: 665px;
     height: 665px;
+    padding: 30px 30px;
     background-color: blue;
     border-radius: 20px;
-    z-index: 0;
 }
 
 .score-restart{
-   
     margin: 10px 400px;
     display: grid;
     grid-template-rows: 1fr;
