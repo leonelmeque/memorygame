@@ -26,7 +26,10 @@ main {
   height: 100%;
   border-radius: 10px;
   cursor: pointer;
-  /* background-color: aliceblue; */
+  display:flex;
+  background-color: aliceblue;
+  justify-content: center;
+  align-items: center;
 }
 
 .board-table {
@@ -45,49 +48,18 @@ main {
   justify-items: center;
 }
 
-.apple {
-  background: url("/images/icons8-apple-96.png") var(--card-color);
-}
 
-.banana {
-  background: url("/images/icons8-sweet-banana-64.png") var(--card-color);
-}
-
-.strawberry {
-  background: url("/images/icons8-strawberry-64.png") var(--card-color);
-}
-
-.coconut {
-  background: url("/images/icons8-coconut-64.png") var(--card-color);
-}
-
-.watermelon {
-  background: url("/images/icons8-watermelon-80.png") var(--card-color);
-}
-
-.pineapple {
-  background: url("/images/icons8-pineapple-80.png") var(--card-color);
-}
-
-.orange {
-  background: url("/images/icons8-orange-100.png") var(--card-color);
-}
-
-.avocado {
-  background: url("/images/icons8-avocado-64.png") var(--card-color);
-}
-
-.apple,
-.avocado,
-.banana,
-.coconut,
-.orange,
-.strawberry,
-.watermelon,
-.pineapple {
-  background-repeat: no-repeat;
-  cursor: pointer;
-  /* position: relative; */
+.apple img,
+.avocado img,
+.banana img,
+.coconut img,
+.orange img,
+.strawberry img,
+.watermelon img,
+.pineapple img{
+  width: 60px;
+  height: 60px;
+  cursor:none;
 }
 
 /* Text CSS */

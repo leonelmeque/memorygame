@@ -68,7 +68,11 @@ function startGame() {
     shuffle(gameCards);
     for(var i=0; i<gameCards.length; i++){
         const card = document.createElement('div');
+        const images = document.createElement('img');
+
+        images.setAttribute('src',`/images/${gameCards[i]}.png`);
         card.setAttribute('class', `box ${gameCards[i]}`);
+        card.appendChild(images);
         gameBoard.appendChild(card);
     }
     gameBoard.addEventListener('click',cardClickEvents);
