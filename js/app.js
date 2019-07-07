@@ -52,12 +52,12 @@ function cardClickEvents(event) {
     if (!firstSelectedCard) {
       firstSelectedCard = event;
       firstSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:red; z-index:0;";
+        "pointer-events:none;background-color:var(--card-selected); z-index:0;";
     } else {
         if (!secondSelectedCard) {
             secondSelectedCard = event;
             secondSelectedCard.target.style.cssText =
-              "pointer-events:none;background-color:red; z-index:0;";
+              "pointer-events:none;background-color:var(--card-selected); z-index:0;";
             console.log(cardChecker());
             updateMoves();
           }
@@ -84,14 +84,18 @@ function shuffle(array) {
 function startGame() {
   gameCards = [...cardClass, ...cardClass];
   shuffle(gameCards);
+//   const card = document.createElement("ul");
+
   for (var i = 0; i < gameCards.length; i++) {
-    const card = document.createElement("div");
-    const cardCover = document.createElement("span");
+    
+    const card = document.createElement("li");
+    const cardCover = document.createElement("span"); 
     const images = document.createElement("img");
 
-    images.setAttribute("src", `/images/${gameCards[i]}.png`);
-    card.setAttribute("class", `box ${gameCards[i]}`);
+  
     cardCover.setAttribute('class', `card-cover ${gameCards[i]}`);
+    card.setAttribute('class','box');
+    images.setAttribute('src',`/images/${gameCards[i]}.png`);
     card.appendChild(cardCover);
     card.appendChild(images);
     gameBoard.appendChild(card);

@@ -5,7 +5,7 @@
 
 :root {
   --card-color: #2a3d4a;
-  --card-selected: #12c1e0;
+  --card-selected: #05b3e5;
   --card-found: #00d0ba;
 }
 /* Game Board Container */
@@ -63,14 +63,7 @@ main {
 }
 
 
-.apple img,
-.avocado img,
-.banana img,
-.coconut img,
-.orange img,
-.strawberry img,
-.watermelon img,
-.pineapple img{
+.box img {
   position: absolute;
   width: 60px;
   height: 60px;
