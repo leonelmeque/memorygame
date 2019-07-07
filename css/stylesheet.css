@@ -5,6 +5,8 @@
 
 :root {
   --card-color: white;
+  --card-selected: red;
+  --card-found: yellow;
 }
 /* Game Board Container */
 .container {
@@ -25,11 +27,23 @@ main {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  display:flex;
+  background-color: aliceblue;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-cover{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
   cursor: pointer;
   display:flex;
   background-color: aliceblue;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .board-table {
@@ -57,9 +71,11 @@ main {
 .strawberry img,
 .watermelon img,
 .pineapple img{
+  position: absolute;
   width: 60px;
   height: 60px;
   cursor:none;
+  z-index: 0;
 }
 
 /* Text CSS */
