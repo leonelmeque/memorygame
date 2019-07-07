@@ -4,9 +4,9 @@
 }
 
 :root {
-  --card-color: white;
-  --card-selected: red;
-  --card-found: yellow;
+  --card-color: #2a3d4a;
+  --card-selected: #12c1e0;
+  --card-found: #00d0ba;
 }
 /* Game Board Container */
 .container {
@@ -40,7 +40,7 @@ main {
   border-radius: 10px;
   cursor: pointer;
   display:flex;
-  background-color: aliceblue;
+  background-color:var(--card-color);
   justify-content: center;
   align-items: center;
   z-index: 1;
@@ -50,7 +50,7 @@ main {
   width: 665px;
   height: 665px;
   padding: 30px 30px;
-  background-color: blue;
+  background-color: #00bcc0;
   border-radius: 20px;
 }
 

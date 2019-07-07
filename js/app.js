@@ -21,27 +21,22 @@ function wrongCards() {
     "pointer-events:auto;background-color:var(--card-color);";
   secondSelectedCard.target.style.cssText =
     "pointer-events:auto;background-color:var(--card-color);";
-  firstSelectedCard = null;
-  secondSelectedCard = null;
+    firstSelectedCard = null;
+    secondSelectedCard = null;
 }
 
 // Check if the selected cards are equal
-function cardChecker() {
-
- if(firstSelectedCard.target.classList.item(0) !=='box' && secondSelectedCard.target.classList.item(0) !=='box'){
-    
- }else{
+function cardChecker() {    
     if (firstSelectedCard.target.classList.item(1) === secondSelectedCard.target.classList.item(1)) {
         firstSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:var(--card-found); z-index:-1;";
+        "pointer-events:none;background-color:var(--card-found); z-index:0;";
       secondSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:var(--card-found); z-index:-1;";
+        "pointer-events:none;background-color:var(--card-found); z-index:0;";
         firstSelectedCard = null;
         secondSelectedCard = null;
         return true;
       }
- }
-  
+ 
   wrongCards();
   return false;
 }
@@ -53,18 +48,20 @@ function updateMoves() {
 
 // Points to the clicked events that are our cards
 function cardClickEvents(event) {
-  if (event.target.classList.item(1) != null) {
+  if (event.target.nodeName === 'SPAN') {
     if (!firstSelectedCard) {
       firstSelectedCard = event;
       firstSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:red; z-index:-1;";
-    } else if (!secondSelectedCard) {
-      secondSelectedCard = event;
-      secondSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:red; z-index:-1;";
-      console.log(cardChecker());
-      updateMoves();
-    }
+        "pointer-events:none;background-color:red; z-index:0;";
+    } else {
+        if (!secondSelectedCard) {
+            secondSelectedCard = event;
+            secondSelectedCard.target.style.cssText =
+              "pointer-events:none;background-color:red; z-index:0;";
+            console.log(cardChecker());
+            updateMoves();
+          }
+    } 
   }
 }
 
@@ -89,7 +86,7 @@ function startGame() {
   shuffle(gameCards);
   for (var i = 0; i < gameCards.length; i++) {
     const card = document.createElement("div");
-    const cardCover = document.createElement("div");
+    const cardCover = document.createElement("span");
     const images = document.createElement("img");
 
     images.setAttribute("src", `/images/${gameCards[i]}.png`);
