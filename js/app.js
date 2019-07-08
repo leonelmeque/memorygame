@@ -17,29 +17,25 @@ let secondSelectedCard = null;
 let counter = 0;
 
 // Resets the cards if they are guessed wrong
-function wrongCards() {
-    firstSelectedCard.target.children[0].style.display='none';
-    secondSelectedCard.target.children[0].style.display='none';
-  firstSelectedCard.target.style.cssText =
-    "pointer-events:auto;background-color:var(--card-color);";
-  secondSelectedCard.target.style.cssText =
-    "pointer-events:auto;background-color:var(--card-color);";
-    firstSelectedCard = null;
-    secondSelectedCard = null;
+function wrongCards(card) {
+    card.target.children[0].style.display='none';
+    card.target.style.cssText =
+        `pointer-events:auto;
+        background-color:var(--card-color);`;
 }
 
 // Check if the selected cards are equal
 function cardChecker() {    
     if (firstSelectedCard.target.classList.item(1) === secondSelectedCard.target.classList.item(1)) {
-        firstSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:var(--card-found); ";
-      secondSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:var(--card-found); ";
+        squeezeCardAnimation(firstSelectedCard);
+        squeezeCardAnimation(secondSelectedCard);
         firstSelectedCard = null;
         secondSelectedCard = null;
-        // return true;
       }else{
-        wrongCards();
+        wrongCards(firstSelectedCard);
+        wrongCards(secondSelectedCard);
+        firstSelectedCard = null;
+        secondSelectedCard = null;
       }
  
 }
@@ -49,22 +45,30 @@ function updateMoves() {
   var movesSpan = document.querySelector("#moves");
   movesSpan.textContent = ++numOfMoves;
 }
+function squeezeCardAnimation(card){
+    card.target.style.cssText =
+        `pointer-events:none;
+        background-color:var(--card-found); 
+        animation: squeeze 1s ease `;
+}
+
 // This fuction flips the card and uses a animation created in the css
-function flipCard(card){
+function flipCardAnimation(card){
     card.target.children[0].style.display='block';
     card.target.style.cssText =
         `pointer-events:none;
         background-color:var(--card-selected); 
         animation:flip 0.5s ease;`;
 }
+
 // Points to the clicked events that are our cards
 function cardClickEvents(event) {
   if (event.target.nodeName === 'SPAN') {
     if (!firstSelectedCard) {
-      flipCard(firstSelectedCard = event);
+            flipCardAnimation(firstSelectedCard = event);
     } else {
         if (!secondSelectedCard) {
-            flipCard(secondSelectedCard = event);
+            flipCardAnimation(secondSelectedCard = event);
             setTimeout(cardChecker,1000);
             updateMoves();
           }
