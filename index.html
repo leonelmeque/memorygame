@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/stylesheet.css" />
     <title>Memory Game</title>
-</head>
-<body>
-    
+  </head>
+
+  <body>
     <main>
-        <h1>Matching Game</h1>
-    <div class="score-restart">
-        <span>add stars</span> <p><span id="moves"></span> Moves</p> <a href="index.html"><span>restart button icon</span></a>        
-    </div>
-        <div class="board-table">
-                <ul class="container">
-                        <!-- The items will be added here with the JavaScript & DOM -->            
-               </ul>  
+      <h1>Matching Game</h1>
+      <div class="score-restart">
+        <div class="stars">
+          <img src="/images/baseline-star_border-24px.svg" alt="" />
+          <img src="/images/baseline-star_border-24px.svg" alt="" />
+          <img src="/images/baseline-star_border-24px.svg" alt="" />
         </div>
-        <div class="game-won">
-            <h2>Congratulations! You Won!</h2>
-            <p>With <span id="moves"></span> and # stars</p>
-            <p>Wooooooo!</p>
-            <a href="/index.html">
-                <input type="button" value="Play Again!" class="button" >
-            </a>
-        </div>
-        
+
+        <p><span id="moves"></span> Moves</p>
+        <a href="index.html"><img src="images/baseline-refresh-24px.svg" alt="" srcset=""></a>
+      </div>
+      <div class="board-table">
+        <ul class="container">
+          <!-- The items will be added here with the JavaScript & DOM -->
+        </ul>
+      </div>
+      <div class="game-won">
+        <h2>Congratulations! You Won!</h2>
+        <p>With <span id="moves"></span> and # stars</p>
+        <p>Wooooooo!</p>
+        <a href="/index.html">
+          <input type="button" value="Play Again!" class="button" />
+        </a>
+      </div>
     </main>
-</body>
-    <script src="js/app.js"></script>
+  </body>
+  <script src="js/app.js"></script>
 </html>
