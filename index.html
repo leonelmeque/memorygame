@@ -14,14 +14,17 @@
       <h1>Matching Game</h1>
       <div class="score-restart">
         <div class="stars">
-          <img src="/images/baseline-star_border-24px.svg" alt="" />
-          <img src="/images/baseline-star_border-24px.svg" alt="" />
-          <img src="/images/baseline-star_border-24px.svg" alt="" />
+          <img src="/images/baseline-star-24px.svg" alt="star" />
+          <img src="/images/baseline-star-24px.svg" alt="star" />
+          <img src="/images/baseline-star-24px.svg" alt="star" />
         </div>
 
-        <p><span id="moves"></span> Moves</p>
-        <a href="index.html"><img src="images/baseline-refresh-24px.svg" alt="" srcset=""></a>
+        <p><span class="moves"></span> Moves</p>
+        <a href="index.html"><img src="images/baseline-refresh-24px.svg" alt="reload"></a>
       </div>
+      <audio>
+         
+      </audio>
       <div class="board-table">
         <ul class="container">
           <!-- The items will be added here with the JavaScript & DOM -->
@@ -29,7 +32,7 @@
       </div>
       <div class="game-won">
         <h2>Congratulations! You Won!</h2>
-        <p>With <span id="moves"></span> and # stars</p>
+        <p>With<span class="moves"></span> Moves and <span id="stars"></span> stars</p>
         <p>Wooooooo!</p>
         <a href="/index.html">
           <input type="button" value="Play Again!" class="button" />

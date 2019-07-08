@@ -10,11 +10,14 @@ let cardClass = [
   "orange"
 ];
 
+const sound = document.querySelector('audio');
 const gameBoard = document.querySelector('.container'); //grid container for the cards
 let numOfMoves = 0;
 let firstSelectedCard = null;
 let secondSelectedCard = null;
 let counter = 0;
+let totalStars = 3;
+
 
 // Resets the cards if they are guessed wrong
 function wrongCards(card) {
@@ -34,6 +37,7 @@ function cardChecker() {
         firstSelectedCard = null;
         secondSelectedCard = null;
       }else{
+        updateMoves();
         shakeAnimation(firstSelectedCard)
         shakeAnimation(secondSelectedCard);
         firstSelectedCard = null;
@@ -45,6 +49,7 @@ function cardChecker() {
 // Check if all cards are turned and ends the game
 function endGame(){
     if(counter===8){
+        
         const board = document.querySelector('.board-table');
         const winnerMessage = document.querySelector('.game-won');
         const mainHeader = document.querySelector('h1');
@@ -53,27 +58,56 @@ function endGame(){
         score.remove();
         mainHeader.remove();
         board.remove();
-        winnerMessage.style.cssText="visibility:visible;"
+
+        var starSpan = document.querySelector('#stars');
+        var movesSpan = document.querySelector(".moves");
+
+        starSpan.textContent = totalStars;
+        movesSpan.textContent = numOfMoves;
+        winnerMessage.style.cssText="visibility:visible; padding-top:350px; animation: zoom-in-out 0.5s ease;"
 
     }
 }
 
 // Updates the number of moves the player had to do to finish the game
 function updateMoves() {
-  var movesSpan = document.querySelector("#moves");
+  var movesSpan = document.querySelector(".moves");
   movesSpan.textContent = ++numOfMoves;
+  var star = document.querySelector('.stars');  ;
+  if(numOfMoves===6){
+    star.children[2].src ='/images/baseline-star_border-24px.svg';
+    totalStars--;
+  }else {
+      if (numOfMoves===12) {
+        star.children[1].src ='/images/baseline-star_border-24px.svg';
+        totalStars--;
+      } else {
+          if(numOfMoves===18){
+            star.children[0].src ='/images/baseline-star_border-24px.svg';
+            totalStars--;
+          }
+      }
+  }
 }
 
 //Function to make the card shake 
 function shakeAnimation(card){
+    sound.src='/audio/131657__bertrof__game-sound-wrong.wav';
+    sound.volume=0.2;
+    sound.play();
     card.target.style.cssText =
         `pointer-events:auto;
         background-color:var(--card-wrong);
         animation: shake 1s ease`;
         setTimeout(wrongCards,1000,card);
 }
+
+
 //Function to make the card squeeze
 function squeezeCardAnimation(card){
+    sound.src='/audio/131660__bertrof__game-sound-correct.wav';
+    sound.volume=0.2;
+    sound.play();
     card.target.style.cssText =
         `pointer-events:none;
         background-color:var(--card-found); 
@@ -82,6 +116,9 @@ function squeezeCardAnimation(card){
 
 // This function flips the card and uses a animation created in the css
 function flipCardAnimation(card){
+    sound.src='/audio/84322__splashdust__flipcard.wav';
+    sound.volume=1;
+    sound.play();
     card.target.children[0].style.display='block';
     card.target.style.cssText =
         `pointer-events:none;
@@ -93,12 +130,13 @@ function flipCardAnimation(card){
 function cardClickEvents(event) {
   if (event.target.nodeName === 'SPAN') {
     if (!firstSelectedCard) {
+          
             flipCardAnimation(firstSelectedCard = event);
     } else {
         if (!secondSelectedCard) {
+           
             flipCardAnimation(secondSelectedCard = event);
             setTimeout(cardChecker,500);
-            updateMoves();
           }
     } 
   }
@@ -143,6 +181,8 @@ function startGame() {
   gameBoard.addEventListener("click", cardClickEvents);
   console.log("Game started");
 }
+
+
 
 //Starts the game
 startGame();
