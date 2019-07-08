@@ -9,6 +9,7 @@ let cardClass = [
   "watermelon",
   "orange"
 ];
+
 const gameBoard = document.querySelector('.container'); //grid container for the cards
 let numOfMoves = 0;
 let firstSelectedCard = null;
@@ -17,6 +18,8 @@ let counter = 0;
 
 // Resets the cards if they are guessed wrong
 function wrongCards() {
+    firstSelectedCard.target.children[0].style.display='none';
+    secondSelectedCard.target.children[0].style.display='none';
   firstSelectedCard.target.style.cssText =
     "pointer-events:auto;background-color:var(--card-color);";
   secondSelectedCard.target.style.cssText =
@@ -29,36 +32,40 @@ function wrongCards() {
 function cardChecker() {    
     if (firstSelectedCard.target.classList.item(1) === secondSelectedCard.target.classList.item(1)) {
         firstSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:var(--card-found); z-index:0;";
+        "pointer-events:none;background-color:var(--card-found); ";
       secondSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:var(--card-found); z-index:0;";
+        "pointer-events:none;background-color:var(--card-found); ";
         firstSelectedCard = null;
         secondSelectedCard = null;
-        return true;
+        // return true;
+      }else{
+        wrongCards();
       }
  
-  wrongCards();
-  return false;
 }
+
 // Updates the number of moves the player had to do to finish the game
 function updateMoves() {
   var movesSpan = document.querySelector("#moves");
   movesSpan.textContent = ++numOfMoves;
 }
-
+// This fuction flips the card and uses a animation created in the css
+function flipCard(card){
+    card.target.children[0].style.display='block';
+    card.target.style.cssText =
+        `pointer-events:none;
+        background-color:var(--card-selected); 
+        animation:flip 0.5s ease;`;
+}
 // Points to the clicked events that are our cards
 function cardClickEvents(event) {
   if (event.target.nodeName === 'SPAN') {
     if (!firstSelectedCard) {
-      firstSelectedCard = event;
-      firstSelectedCard.target.style.cssText =
-        "pointer-events:none;background-color:var(--card-selected); z-index:0;";
+      flipCard(firstSelectedCard = event);
     } else {
         if (!secondSelectedCard) {
-            secondSelectedCard = event;
-            secondSelectedCard.target.style.cssText =
-              "pointer-events:none;background-color:var(--card-selected); z-index:0;";
-            console.log(cardChecker());
+            flipCard(secondSelectedCard = event);
+            setTimeout(cardChecker,1000);
             updateMoves();
           }
     } 
@@ -84,25 +91,26 @@ function shuffle(array) {
 function startGame() {
   gameCards = [...cardClass, ...cardClass];
   shuffle(gameCards);
-//   const card = document.createElement("ul");
 
   for (var i = 0; i < gameCards.length; i++) {
-    
+    // Creating the and it's elements
     const card = document.createElement("li");
     const cardCover = document.createElement("span"); 
     const images = document.createElement("img");
 
-  
+    // Setting the attributes of the cards and its elements
     cardCover.setAttribute('class', `card-cover ${gameCards[i]}`);
     card.setAttribute('class','box');
     images.setAttribute('src',`/images/${gameCards[i]}.png`);
+
+    // Adding the elements to the html and the gameBoard container
+    cardCover.appendChild(images);
     card.appendChild(cardCover);
-    card.appendChild(images);
     gameBoard.appendChild(card);
   }
   gameBoard.addEventListener("click", cardClickEvents);
   console.log("Game started");
 }
 
-// Starts the game
+//Starts the game
 startGame();

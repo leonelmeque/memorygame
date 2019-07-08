@@ -19,22 +19,27 @@
 main {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
+ 
   padding: 20px 0px;
 }
+
+
 
 .box {
   width: 100%;
   height: 100%;
   border-radius: 10px;
   display:flex;
-  background-color: aliceblue;
+  background-color: transparent;
   justify-content: center;
   align-items: center;
+  perspective: 1000px;
 }
 
 .card-cover{
-  position: relative;
+  
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -43,10 +48,18 @@ main {
   background-color:var(--card-color);
   justify-content: center;
   align-items: center;
-  z-index: 1;
+ 
+  transform-style: preserve-3d;
+}
+
+@keyframes flip{
+  to{
+     transform:rotateY(360deg);
+  }
 }
 
 .board-table {
+  align-self: center;
   width: 665px;
   height: 665px;
   padding: 30px 30px;
@@ -63,13 +76,16 @@ main {
 }
 
 
-.box img {
-  position: absolute;
+span img {
+  display:none;
   width: 60px;
   height: 60px;
   cursor:none;
-  z-index: 0;
+   z-index: 0;  
+  transform-style: preserve-3d;
+ 
 }
+
 
 /* Text CSS */
 h1 {
