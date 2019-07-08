@@ -1,3 +1,4 @@
+
 // Array with classes of every card
 let cardClass = [
   "apple",
@@ -28,7 +29,7 @@ function wrongCards(card) {
 }
 
 // Check if the selected cards are equal
-function cardChecker() {    
+ function cardChecker() {    
     if (firstSelectedCard.target.classList.item(1) === secondSelectedCard.target.classList.item(1)) {
         squeezeCardAnimation(firstSelectedCard);
         squeezeCardAnimation(secondSelectedCard);
@@ -91,10 +92,10 @@ function updateMoves() {
 }
 
 //Function to make the card shake 
-function shakeAnimation(card){
+ function shakeAnimation(card){
     sound.src='/audio/131657__bertrof__game-sound-wrong.wav';
     sound.volume=0.2;
-    sound.play();
+    sound.play().catch(()=>{});
     card.target.style.cssText =
         `pointer-events:auto;
         background-color:var(--card-wrong);
@@ -107,7 +108,7 @@ function shakeAnimation(card){
 function squeezeCardAnimation(card){
     sound.src='/audio/131660__bertrof__game-sound-correct.wav';
     sound.volume=0.2;
-    sound.play();
+    sound.play().catch(()=>{});
     card.target.style.cssText =
         `pointer-events:none;
         background-color:var(--card-found); 
