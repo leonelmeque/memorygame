@@ -7,6 +7,11 @@
   --card-color: #2a3d4a;
   --card-selected: #05b3e5;
   --card-found: #00d0ba;
+  --card-wrong: #f95b3c;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
 }
 /* Game Board Container */
 .container {
@@ -58,23 +63,20 @@ main {
 }
 
 @keyframes shake{
-  to{
-     transform:rotateY(50deg);
-  }
+  0% {transform:rotate(0deg) translateX(0px);}  
+  25% {transform:rotate(-10deg) translateX(-20px);}
+  50% {transform:rotate(10deg) translateX(20px);}
+  75% {transform:rotate(-10deg) translateX(-20px);}
+  100% {transform:rotate(0) translateX(0);}
 }
 
 @keyframes squeeze{
-  /* from{
-     transform:scale(1.1,0.9);
-  } */
- 
    0% {transform:scale(1,1);}
    60% {transform:scale(1.1,0.9);}
    70% {transform:scale(0.9,1.1);}
    80% {transform:scale(1.1,0.9);}
    90% {transform:scale(0.9,1.1);}
    100% {transform:scale(1,1);}
-  
 }
 
 .board-table {
@@ -113,4 +115,5 @@ h1 {
 
 p {
   display: inline;
+  font-weight: bold;
 }

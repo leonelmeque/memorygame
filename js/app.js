@@ -32,8 +32,8 @@ function cardChecker() {
         firstSelectedCard = null;
         secondSelectedCard = null;
       }else{
-        wrongCards(firstSelectedCard);
-        wrongCards(secondSelectedCard);
+        shakeAnimation(firstSelectedCard)
+        shakeAnimation(secondSelectedCard);
         firstSelectedCard = null;
         secondSelectedCard = null;
       }
@@ -45,6 +45,15 @@ function updateMoves() {
   var movesSpan = document.querySelector("#moves");
   movesSpan.textContent = ++numOfMoves;
 }
+
+function shakeAnimation(card){
+    card.target.style.cssText =
+        `pointer-events:auto;
+        background-color:var(--card-wrong);
+        animation: shake 1s ease`;
+        setTimeout(wrongCards,1000,card);
+}
+
 function squeezeCardAnimation(card){
     card.target.style.cssText =
         `pointer-events:none;
@@ -69,7 +78,7 @@ function cardClickEvents(event) {
     } else {
         if (!secondSelectedCard) {
             flipCardAnimation(secondSelectedCard = event);
-            setTimeout(cardChecker,1000);
+            setTimeout(cardChecker,500);
             updateMoves();
           }
     } 
