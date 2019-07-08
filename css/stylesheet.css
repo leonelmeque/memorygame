@@ -27,10 +27,16 @@ main {
   flex-direction: column;
   /* justify-content: center; */
  
-  padding: 20px 0px;
+  padding: 50px 0px;
 }
 
-
+.game-won{
+  visibility: hidden;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
 
 .box {
   width: 100%;
@@ -106,14 +112,22 @@ span img {
  
 }
 
-
+/* button css */
+.button{
+  background-color: #00bcc0;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  align-self: center;
+}
 /* Text CSS */
 h1 {
   width: 100%;
   text-align: center;
 }
 
-p {
+.score-restart p {
   display: inline;
   font-weight: bold;
 }

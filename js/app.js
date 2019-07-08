@@ -29,6 +29,8 @@ function cardChecker() {
     if (firstSelectedCard.target.classList.item(1) === secondSelectedCard.target.classList.item(1)) {
         squeezeCardAnimation(firstSelectedCard);
         squeezeCardAnimation(secondSelectedCard);
+        counter++;
+        endGame();
         firstSelectedCard = null;
         secondSelectedCard = null;
       }else{
@@ -40,12 +42,29 @@ function cardChecker() {
  
 }
 
+// Check if all cards are turned and ends the game
+function endGame(){
+    if(counter===8){
+        const board = document.querySelector('.board-table');
+        const winnerMessage = document.querySelector('.game-won');
+        const mainHeader = document.querySelector('h1');
+        const score = document.querySelector('.score-restart');
+
+        score.remove();
+        mainHeader.remove();
+        board.remove();
+        winnerMessage.style.cssText="visibility:visible;"
+
+    }
+}
+
 // Updates the number of moves the player had to do to finish the game
 function updateMoves() {
   var movesSpan = document.querySelector("#moves");
   movesSpan.textContent = ++numOfMoves;
 }
 
+//Function to make the card shake 
 function shakeAnimation(card){
     card.target.style.cssText =
         `pointer-events:auto;
@@ -53,7 +72,7 @@ function shakeAnimation(card){
         animation: shake 1s ease`;
         setTimeout(wrongCards,1000,card);
 }
-
+//Function to make the card squeeze
 function squeezeCardAnimation(card){
     card.target.style.cssText =
         `pointer-events:none;
@@ -61,7 +80,7 @@ function squeezeCardAnimation(card){
         animation: squeeze 1s ease `;
 }
 
-// This fuction flips the card and uses a animation created in the css
+// This function flips the card and uses a animation created in the css
 function flipCardAnimation(card){
     card.target.children[0].style.display='block';
     card.target.style.cssText =
