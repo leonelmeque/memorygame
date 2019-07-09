@@ -1,0 +1,28 @@
+{
+  "name": "memorygame",
+  "version": "1.0.0",
+  "description": "udacity memory game",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypekeyz/memorygame.git"
+  },
+  "keywords": [
+    "game",
+    "memory",
+    "udacity"
+  ],
+  "author": "hypekeyz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hypekeyz/memorygame/issues"
+  },
+  "homepage": "https://github.com/hypekeyz/memorygame#readme",
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-google": "^0.13.0"
+  }
+}
