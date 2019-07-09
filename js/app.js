@@ -76,15 +76,15 @@ function updateMoves() {
   movesSpan.textContent = ++numOfMoves;
   const star = document.querySelector('.stars');
   if (numOfMoves===6) {
-    star.children[2].src ='/images/baseline-star_border-24px.svg';
+    star.children[2].src ='images/baseline-star_border-24px.svg';
     totalStars--;
   } else {
     if (numOfMoves===12) {
-      star.children[1].src ='/images/baseline-star_border-24px.svg';
+      star.children[1].src ='images/baseline-star_border-24px.svg';
       totalStars--;
     } else {
       if (numOfMoves===18) {
-        star.children[0].src ='/images/baseline-star_border-24px.svg';
+        star.children[0].src ='images/baseline-star_border-24px.svg';
         totalStars--;
       }
     }
@@ -93,7 +93,7 @@ function updateMoves() {
 
 // Function to make the card shake
 function shakeAnimation(card) {
-  sound.src='/audio/131657__bertrof__game-sound-wrong.wav';
+  sound.src='audio/131657__bertrof__game-sound-wrong.wav';
   sound.volume=0.2;
   sound.play().catch(()=>{});
   card.target.style.cssText =
@@ -106,7 +106,7 @@ function shakeAnimation(card) {
 
 // Function to make the card squeeze
 function squeezeCardAnimation(card) {
-  sound.src='/audio/131660__bertrof__game-sound-correct.wav';
+  sound.src='audio/131660__bertrof__game-sound-correct.wav';
   sound.volume=0.2;
   sound.play().catch(()=>{});
   card.target.style.cssText =
@@ -117,7 +117,7 @@ function squeezeCardAnimation(card) {
 
 // This function flips the card and uses a animation created in the css
 function flipCardAnimation(card) {
-  sound.src='/audio/84322__splashdust__flipcard.wav';
+  sound.src='audio/84322__splashdust__flipcard.wav';
   sound.volume=1;
   sound.play();
   card.target.children[0].style.display='block';
@@ -172,7 +172,7 @@ function startGame() {
     // Setting the attributes of the cards and its elements
     cardCover.setAttribute('class', `card-cover ${gameCards[i]}`);
     card.setAttribute('class', 'box');
-    images.setAttribute('src', `/images/${gameCards[i]}.png`);
+    images.setAttribute('src', `images/${gameCards[i]}.png`);
 
     // Adding the elements to the html and the gameBoard container
     cardCover.appendChild(images);
