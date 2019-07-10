@@ -153,6 +153,9 @@ h1 {
   margin-bottom: 10px;
 }
 
+label {
+  cursor: pointer;
+}
 
 @media screen and (max-width:720px){
   .board-table{

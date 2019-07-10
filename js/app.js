@@ -1,36 +1,39 @@
-'use strict';
+"use strict";
 // Array with classes of every card
 const cardClass = [
-  'apple',
-  'banana',
-  'strawberry',
-  'avocado',
-  'coconut',
-  'pineapple',
-  'watermelon',
-  'orange',
+  "apple",
+  "banana",
+  "strawberry",
+  "avocado",
+  "coconut",
+  "pineapple",
+  "watermelon",
+  "orange"
 ];
 
-const sound = document.querySelector('audio');
-const gameBoard = document.querySelector('.container'); // grid container for the cards
+const sound = document.querySelector("audio");
+const gameBoard = document.querySelector(".container"); // grid container for the cards
+let fragment = document.createDocumentFragment();
 let numOfMoves = 0;
 let firstSelectedCard = null;
 let secondSelectedCard = null;
 let counter = 0;
 let totalStars = 3;
-
+const movesSpan = document.querySelector(".moves");
 
 // Resets the cards if they are guessed wrong
 function wrongCards(card) {
-  card.target.children[0].style.display='none';
-  card.target.style.cssText =
-        `pointer-events:auto;
+  card.target.children[0].style.display = "none";
+  card.target.style.cssText = `pointer-events:auto;
         background-color:var(--card-color);`;
 }
 
 // Check if the selected cards are equal
 function cardChecker() {
-  if (firstSelectedCard.target.classList.item(1) === secondSelectedCard.target.classList.item(1)) {
+  if (
+    firstSelectedCard.target.classList.item(1) ===
+    secondSelectedCard.target.classList.item(1)
+  ) {
     squeezeCardAnimation(firstSelectedCard);
     squeezeCardAnimation(secondSelectedCard);
     counter++;
@@ -44,47 +47,44 @@ function cardChecker() {
     firstSelectedCard = null;
     secondSelectedCard = null;
   }
-
 }
 
 // Check if all cards are turned and ends the game
 function endGame() {
-  if (counter===8) {
-
-    const board = document.querySelector('.board-table');
-    const winnerMessage = document.querySelector('.game-won');
-    const mainHeader = document.querySelector('h1');
-    const score = document.querySelector('.score-restart');
-
+  if (counter === 8) {
+    const board = document.querySelector(".board-table");
+    const winnerMessage = document.querySelector(".game-won");
+    const mainHeader = document.querySelector("h1");
+    const score = document.querySelector(".score-restart");
+    counter = 0;
     score.remove();
     mainHeader.remove();
     board.remove();
 
-    const starSpan = document.querySelector('#stars');
-    const movesSpan = document.querySelector('.moves');
+    const starSpan = document.querySelector("#stars");
+    const movesSpan = document.querySelector(".moves");
 
     starSpan.textContent = totalStars;
     movesSpan.textContent = numOfMoves;
-    winnerMessage.style.cssText='visibility:visible; padding-top:150px; animation: zoom-in-out 0.5s ease;';
-
+    winnerMessage.style.cssText =
+      "visibility:visible; padding-top:150px; animation: zoom-in-out 0.5s ease;";
   }
 }
 
 // Updates the number of moves the player had to do to finish the game
 function updateMoves() {
-  const movesSpan = document.querySelector('.moves');
   movesSpan.textContent = ++numOfMoves;
-  const star = document.querySelector('.stars');
-  if (numOfMoves===6) {
-    star.children[2].src ='images/baseline-star_border-24px.svg';
+  const star = document.querySelector(".stars");
+  if (numOfMoves === 6) {
+    star.children[2].src = "images/baseline-star_border-24px.svg";
     totalStars--;
   } else {
-    if (numOfMoves===12) {
-      star.children[1].src ='images/baseline-star_border-24px.svg';
+    if (numOfMoves === 12) {
+      star.children[1].src = "images/baseline-star_border-24px.svg";
       totalStars--;
     } else {
-      if (numOfMoves===18) {
-        star.children[0].src ='images/baseline-star_border-24px.svg';
+      if (numOfMoves === 18) {
+        star.children[0].src = "images/baseline-star_border-24px.svg";
         totalStars--;
       }
     }
@@ -93,50 +93,68 @@ function updateMoves() {
 
 // Function to make the card shake
 function shakeAnimation(card) {
-  sound.src='audio/131657__bertrof__game-sound-wrong.wav';
-  sound.volume=0.2;
-  sound.play().catch(()=>{});
-  card.target.style.cssText =
-        `pointer-events:auto;
+  sound.src = "audio/131657__bertrof__game-sound-wrong.wav";
+  sound.volume = 0.2;
+  sound.play().catch(() => {});
+  card.target.style.cssText = `pointer-events:auto;
         background-color:var(--card-wrong);
         animation: shake 1s ease`;
   setTimeout(wrongCards, 1000, card);
 }
 
-
 // Function to make the card squeeze
 function squeezeCardAnimation(card) {
-  sound.src='audio/131660__bertrof__game-sound-correct.wav';
-  sound.volume=0.2;
-  sound.play().catch(()=>{});
-  card.target.style.cssText =
-        `pointer-events:none;
+  sound.src = "audio/131660__bertrof__game-sound-correct.wav";
+  sound.volume = 0.2;
+  sound.play().catch(() => {});
+  card.target.style.cssText = `pointer-events:none;
         background-color:var(--card-found); 
         animation: squeeze 1s ease `;
 }
 
 // This function flips the card and uses a animation created in the css
 function flipCardAnimation(card) {
-  sound.src='audio/84322__splashdust__flipcard.wav';
-  sound.volume=1;
+  sound.src = "audio/84322__splashdust__flipcard.wav";
+  sound.volume = 1;
   sound.play();
-  card.target.children[0].style.display='block';
-  card.target.style.cssText =
-        `pointer-events:none;
+  card.target.children[0].style.display = "block";
+  card.target.style.cssText = `pointer-events:none;
         background-color:var(--card-selected); 
         animation:flip 0.5s ease;`;
+}
+// Reloads the game
+// eslint-disable-next-line no-unused-vars
+function reloadGame() {
+  var img = document.querySelector(".stars");
+  img.innerHTML = `<img src="images/baseline-star-24px.svg" alt="star" />
+                  <img src="images/baseline-star-24px.svg" alt="star" />
+                  <img src="images/baseline-star-24px.svg" alt="star" />`;
+  var ul = document.querySelector("ul");
+  var cards = [...ul.children];
+  shuffle(cards);
+  movesSpan.textContent = "";
+  firstSelectedCard = null;
+  secondSelectedCard = null;
+  ul.innerHTML = "";
+  counter = 0;
+  numOfMoves = 0;
+  for (let card of cards) {
+    card.children[0].children[0].style.display = "none";
+    card.children[0].style.cssText = `pointer-events:auto;
+       background-color:var(--card-color);`;
+    fragment.appendChild(card);
+  }
+    ul.appendChild(fragment);
 }
 
 // Points to the clicked events that are our cards
 function cardClickEvents(event) {
-  if (event.target.nodeName === 'SPAN') {
+  if (event.target.nodeName === "SPAN") {
     if (!firstSelectedCard) {
-
-      flipCardAnimation(firstSelectedCard = event);
+      flipCardAnimation((firstSelectedCard = event));
     } else {
       if (!secondSelectedCard) {
-
-        flipCardAnimation(secondSelectedCard = event);
+        flipCardAnimation((secondSelectedCard = event));
         setTimeout(cardChecker, 500);
       }
     }
@@ -160,29 +178,29 @@ function shuffle(array) {
 
 // Starting the game
 function startGame() {
-  const gameCards = [...cardClass, ...cardClass];
-  shuffle(gameCards);
+  var cards = [...cardClass, ...cardClass];
+  shuffle(cards);
 
-  for (let i = 0; i < gameCards.length; i++) {
+  for (let card of cards) {
     // Creating the and it's elements
-    const card = document.createElement('li');
-    const cardCover = document.createElement('span');
-    const images = document.createElement('img');
+    const cardItem = document.createElement("li");
+    const cardCover = document.createElement("span");
+    const images = document.createElement("img");
 
     // Setting the attributes of the cards and its elements
-    cardCover.setAttribute('class', `card-cover ${gameCards[i]}`);
-    card.setAttribute('class', 'box');
-    images.setAttribute('src', `images/${gameCards[i]}.png`);
+    cardCover.setAttribute("class", `card-cover ${card}`);
+    cardItem.setAttribute("class", "box");
+    images.setAttribute("src", `images/${card}.png`);
 
     // Adding the elements to the html and the gameBoard container
     cardCover.appendChild(images);
-    card.appendChild(cardCover);
-    gameBoard.appendChild(card);
+    cardItem.appendChild(cardCover);
+    fragment.appendChild(cardItem);
   }
-  gameBoard.addEventListener('click', cardClickEvents);
-  console.log('Game started');
+  gameBoard.appendChild(fragment);
+  gameBoard.addEventListener("click", cardClickEvents);
+  console.log("Game started");
 }
-
 
 // Starts the game
 startGame();
