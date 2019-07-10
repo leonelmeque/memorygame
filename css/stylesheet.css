@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+html, body{
+  height: 100vmax;
+}
+
 :root {
   --card-color: #2a3d4a;
   --card-selected: #05b3e5;
@@ -12,6 +16,18 @@
 
 body{
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.grid {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 100px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "main main"
+  "footer footer";
+  background-repeat: no-repeat; 
+  background: rgb(255,255,255);
+  background: linear-gradient(163deg, rgba(255,255,255,1) 41%, rgba(47,191,214,1) 56%, rgba(90,157,202,1) 67%, rgba(90,157,202,1) 71%, rgba(171,125,209,1) 89%);
 }
 /* Game Board Container */
 .container {
@@ -23,6 +39,7 @@ body{
 }
 
 main {
+  grid-area: main;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -160,6 +177,15 @@ h1 {
 
 label {
   cursor: pointer;
+}
+
+footer{
+  grid-area: footer;
+  width: 100%;
+  text-align: center;
+  font-weight:bold;
+  color:white;
+  flex-direction: column;
 }
 
 @media screen and (max-width:720px){
