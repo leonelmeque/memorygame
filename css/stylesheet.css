@@ -171,7 +171,7 @@ h1 {
   
 }
 
-.game-won h2{
+.game-won-modal h2{
   margin-bottom: 10px;
 }
 
@@ -201,6 +201,9 @@ footer{
   grid-gap: 10px 10px;
   }
   
+  .game-won-modal{
+    padding-top: 250px;
+  }
   span img{
     width: 30px;
     height: 30px;
