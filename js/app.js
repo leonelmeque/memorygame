@@ -52,22 +52,15 @@ function cardChecker() {
 // Check if all cards are turned and ends the game
 function endGame() {
   if (counter === 8) {
-    const board = document.querySelector(".board-table");
-    const winnerMessage = document.querySelector(".game-won");
-    const mainHeader = document.querySelector("h1");
-    const score = document.querySelector(".score-restart");
+    var modal = document.querySelector('.game-won-modal');
     counter = 0;
-    score.remove();
-    mainHeader.remove();
-    board.remove();
-
+  
     const starSpan = document.querySelector("#stars");
     const movesSpan = document.querySelector(".moves");
 
+    modal.style.display = 'block';
     starSpan.textContent = totalStars;
     movesSpan.textContent = numOfMoves;
-    winnerMessage.style.cssText =
-      "visibility:visible; padding-top:150px; animation: zoom-in-out 0.5s ease;";
   }
 }
 
@@ -125,12 +118,14 @@ function flipCardAnimation(card) {
 // Reloads the game
 // eslint-disable-next-line no-unused-vars
 function reloadGame() {
+  var modal = document.querySelector('.game-won-modal');
   var img = document.querySelector(".stars");
   img.innerHTML = `<img src="images/baseline-star-24px.svg" alt="star" />
                   <img src="images/baseline-star-24px.svg" alt="star" />
                   <img src="images/baseline-star-24px.svg" alt="star" />`;
   var ul = document.querySelector("ul");
   var cards = [...ul.children];
+  modal.style.display = 'none';
   shuffle(cards);
   movesSpan.textContent = "";
   firstSelectedCard = null;

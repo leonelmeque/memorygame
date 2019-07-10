@@ -28,13 +28,18 @@ main {
   flex-direction: column;
   padding: 50px 0px;
 }
-
-.game-won{
-  visibility: hidden;
+/* Code Adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal */
+.game-won-modal{
   align-self: center;
-  display: flex;
+  display: none;
   flex-direction: column;
   text-align: center;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding-top: 350px;
+  background: white;
 }
 
 .box {
