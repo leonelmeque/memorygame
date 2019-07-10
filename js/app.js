@@ -65,7 +65,7 @@ function endGame() {
 
     starSpan.textContent = totalStars;
     movesSpan.textContent = numOfMoves;
-    winnerMessage.style.cssText='visibility:visible; padding-top:350px; animation: zoom-in-out 0.5s ease;';
+    winnerMessage.style.cssText='visibility:visible; padding-top:150px; animation: zoom-in-out 0.5s ease;';
 
   }
 }
