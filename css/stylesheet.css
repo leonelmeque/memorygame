@@ -154,7 +154,7 @@ h1 {
 }
 
 
-@media screen and (max-width:640px){
+@media screen and (max-width:720px){
   .board-table{
     width: 332.5px;
     height : 332.5px;
