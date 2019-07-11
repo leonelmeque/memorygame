@@ -11,12 +11,13 @@ const cardClass = [
   "orange"
 ];
 let stopTime;
-let gameStatus = [0,3,0,true,0];
-let [counter,totalStars,numOfMoves,resetTime,seconds] = gameStatus;
+let gameStatus = [0, 3, 0, true, 0];
+let [counter, totalStars, numOfMoves, resetTime, seconds] = gameStatus;
 const sound = document.querySelector("audio");
 const gameBoard = document.querySelector(".container"); // grid container for the cards
 let fragment = document.createDocumentFragment();
-let firstSelectedCard, secondSelectedCard = null;
+let firstSelectedCard,
+  secondSelectedCard = null;
 const movesSpan = document.querySelector(".moves");
 
 // Resets the cards if they are guessed wrong
@@ -48,18 +49,18 @@ function cardChecker() {
 function endGame() {
   if (counter === 8) {
     clearInterval(stopTime);
-    var modal = document.querySelector('.game-won-modal');
+    var modal = document.querySelector(".game-won-modal");
     counter = 0;
     window.clearInterval(timerTrigger);
-    var starSpan = document.querySelector('#stars');
-    var movesSpan = document.querySelector('#moves');
-    var totalTime = document.querySelector('.total-time');
+    var starSpan = document.querySelector("#stars");
+    var movesSpan = document.querySelector("#moves");
+    var totalTime = document.querySelector(".total-time");
 
-    totalTime.textContent = seconds+' seconds';
+    totalTime.textContent = seconds + " seconds";
     starSpan.textContent = totalStars;
     movesSpan.textContent = numOfMoves;
     console.log(movesSpan);
-    modal.style.display = 'block';
+    modal.style.display = "block";
   }
 }
 
@@ -115,10 +116,11 @@ function flipCardAnimation(card) {
         animation:flip 0.5s ease;`;
 }
 
-
 // Points to the clicked events that are our cards
 function cardClickEvents(event) {
-  if(resetTime===true){timerTrigger();}
+  if (resetTime === true) {
+    timerTrigger();
+  }
   if (event.target.nodeName === "SPAN") {
     if (!firstSelectedCard) {
       flipCardAnimation((firstSelectedCard = event));
@@ -134,9 +136,9 @@ function cardClickEvents(event) {
 function timerTrigger() {
   resetTime = false;
   seconds++;
-  document.getElementById('timer').innerHTML = seconds+' s' ;
+  document.getElementById("timer").innerHTML = seconds + " s";
   console.log(seconds);
-  stopTime = setTimeout(timerTrigger,1000);
+  stopTime = setTimeout(timerTrigger, 1000);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -158,7 +160,7 @@ function shuffle(array) {
 // eslint-disable-next-line no-unused-vars
 function reloadGame() {
   clearInterval(stopTime);
-  var modal = document.querySelector('.game-won-modal');
+  var modal = document.querySelector(".game-won-modal");
   var img = document.querySelector(".stars");
   var ul = document.querySelector("ul");
   var cards = [...ul.children];
@@ -169,25 +171,25 @@ function reloadGame() {
                   <img src="images/baseline-star-24px.svg" alt="star" />
                   <img src="images/baseline-star-24px.svg" alt="star" />`;
 
- //Quick way to remove the elements and values of the elements 
+  //Quick way to remove the elements and values of the elements
   ul.innerHTML = movesSpan.textContent = "";
-  document.getElementById('timer').innerHTML = 0+' s' ;
-//Resetting the cards and game values
+  document.getElementById("timer").innerHTML = 0 + " s";
+  //Resetting the cards and game values
   firstSelectedCard = secondSelectedCard = null;
-  [counter,totalStars,numOfMoves,resetTime,seconds] = gameStatus;
+  [counter, totalStars, numOfMoves, resetTime, seconds] = gameStatus;
 
-//I make usage of the same elements already created in the game to shuffle them again, avoids usage of more resources
+  //I make usage of the same elements already created in the game to shuffle them again, avoids usage of more resources
   shuffle(cards);
 
-//Here I am adding the cards with their attributes 
+  //Here I am adding the cards with their attributes
   for (let card of cards) {
     card.children[0].children[0].style.display = "none";
     card.children[0].style.cssText = `pointer-events:auto;
        background-color:var(--card-color);`;
-       fragment.appendChild(card);
-      }
-      ul.appendChild(fragment);
-      modal.style.display = 'none'; // and finaly we can remove the modal from the game
+    fragment.appendChild(card);
+  }
+  ul.appendChild(fragment);
+  modal.style.display = "none"; // and finaly we can remove the modal from the game
 }
 
 // Starting the game

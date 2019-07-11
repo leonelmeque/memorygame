@@ -3,8 +3,9 @@
   margin: 0;
 }
 
-html,body{
- height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 :root {
@@ -15,10 +16,14 @@ html,body{
 }
 
 body {
-  
   font-family: Arial, Helvetica, sans-serif;
-  background: rgb(238,174,202);
-  background: linear-gradient(180deg, rgba(238,174,202,1) 0%, rgba(81,94,110,1) 100%) fixed;
+  background: rgb(238, 174, 202);
+  background: linear-gradient(
+      180deg,
+      rgba(238, 174, 202, 1) 0%,
+      rgba(81, 94, 110, 1) 100%
+    )
+    fixed;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -30,7 +35,7 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "main main"
-    "footer footer"; 
+    "footer footer";
 }
 /* Game Board Container */
 .container {
@@ -47,6 +52,11 @@ main {
   flex-direction: column;
   padding: 50px 0px;
 }
+
+h1 {
+  color: white;
+  padding: 20px 0px;
+}
 /* Code Adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal */
 .game-won-modal {
   align-self: center;
@@ -58,8 +68,12 @@ main {
   width: 100%;
   height: 100vmax;
   padding-top: 350px;
-  background: rgb(238,174,202);
-  background: radial-gradient(circle, rgba(238,174,202,0.8) 0%, rgba(148,187,233,1) 100%);
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 0.8) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
 }
 
 .box {
@@ -83,6 +97,10 @@ main {
   justify-content: center;
   align-items: center;
   transform-style: preserve-3d;
+}
+
+.stars{
+  justify-self: end;
 }
 
 @keyframes flip {
@@ -165,14 +183,12 @@ main {
 .score-restart {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 85px 25% 120px 20% ;
+  grid-template-columns: 85px 25% 120px 20%;
   grid-column-gap: 1%;
   align-items: center;
-  margin:  0px auto;
+  justify-content: center;
+  margin: 0px auto;
 }
-
-
-
 
 span img {
   display: none;
@@ -208,6 +224,7 @@ h1 {
 
 label {
   cursor: pointer;
+  width: 100%;
 }
 
 footer {
@@ -222,7 +239,7 @@ footer {
   flex-direction: column;
 }
 
-footer p{
+footer p {
   margin: auto;
 }
 
@@ -231,6 +248,15 @@ footer p{
     width: 332.5px;
     height: 332.5px;
     padding: 10px 10px;
+  }
+
+  .stars img,
+  label img {
+    width: 10px;
+  }
+  .score-restart p,
+  label.timer {
+    font-size: 10px;
   }
 
   .container {
@@ -249,11 +275,22 @@ footer p{
 }
 
 /* Iphone 5 and smaller screens */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
   .board-table {
     width: 232.5px;
     height: 232.5px;
     padding: 10px 10px;
+  }
+  
+
+  .score-restart {
+   
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 45px 30% 80px 10%;
+    grid-column-gap: 1%;
+    align-items: center;
+    margin: 0px auto;
   }
 
   .container {
@@ -262,10 +299,12 @@ footer p{
     grid-gap: 10px 10px;
   }
 
-  .stars img,label img{
+  .stars img,
+  label img {
     width: 10px;
   }
-  .score-restart p, label.timer{
+  .score-restart p,
+  label.timer {
     font-size: 10px;
   }
 
