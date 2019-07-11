@@ -165,19 +165,14 @@ main {
 .score-restart {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 35% 25% 15% 25% ;
-  width: 100%;
-  padding-top: 20px;
+  grid-template-columns: 85px 25% 120px 20% ;
+  grid-column-gap: 1%;
   align-items: center;
+  margin:  0px auto;
 }
 
-.stars {
-  justify-self: end;
-}
 
-.moves {
-  margin-left: 10px;
-}
+
 
 span img {
   display: none;
@@ -267,7 +262,13 @@ footer p{
     grid-gap: 10px 10px;
   }
 
-  
+  .stars img,label img{
+    width: 10px;
+  }
+  .score-restart p, label.timer{
+    font-size: 10px;
+  }
+
   .game-won-modal {
     padding-top: 250px;
   }
