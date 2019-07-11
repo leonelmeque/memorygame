@@ -39,9 +39,15 @@ Here's an example of it:
 
 #### Winning the game
 When you win the game a screen will display showing the number of stars, moves and time you spent to complete all cards.
- <img align="center" width="auto" height="auto" src="https://github.com/hypekeyz/memorygame/raw/master/Mobile%20screenshot%20game%20won.png">
+ <img aling="center" width="auto" height="auto" src="https://github.com/hypekeyz/memorygame/raw/master/Mobile%20screenshot%20game%20won.png">
 
 
 ### Timer
 
 The game has a timer showing how long it took for the player to find all the hidden images in the cards.
+
+### Dependencies 
+
+If you clone the game and try to run it make sure you use a live server extension that you can find in the marketplace of the IDE you are currently using That will make the project run in your localhost server, but if you want to access the game right visit https://hypekeyz.github.io/memorygame/ and you can play the live version of the game, you can play on your mobile phone too. 
+
+Please share the link with others if you can :-).
