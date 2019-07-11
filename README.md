@@ -39,7 +39,7 @@ Here's an example of it:
 
 #### Winning the game
 When you win the game a screen will display showing the number of stars, moves and time you spent to complete all cards.
- <img align="left" width="600" height="200" src="https://github.com/hypekeyz/memorygame/raw/master/Mobile%20screenshot%20game%20won.png">
+ <img align="center" width="auto" height="auto" src="https://github.com/hypekeyz/memorygame/raw/master/Mobile%20screenshot%20game%20won.png">
 
 
 ### Timer
