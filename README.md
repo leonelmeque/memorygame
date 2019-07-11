@@ -25,7 +25,7 @@ The game has animations and sound for each intereaction the player makes with th
 ##### Flipped Cards
 
 When the card is flipped the card will change of color and display and image that was hidden inside the card. Here's an example of it:
-![alt text](https://github.com/hypekeyz/memorygame/raw/master/Desktop%20Screenshot%20right%20cards.png)
+![alt text](https://github.com/hypekeyz/memorygame/raw/master/screenshots/Desktop%20Screenshot%20flip.png)
 
 ##### Wrong Cards
 
