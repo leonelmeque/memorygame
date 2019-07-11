@@ -29,13 +29,17 @@ When the card is flipped the card will change of color and display and image tha
 
 When the player turns a card that doesn't match the game displays a different animation from the previous mentioned above and changes to a different color, after that hiddes the image of the card and changes the color back to normal.
 Here's an example of it:
-`insert video here`
+
 
 ##### Correct Cards
 
 If cards are correctly guessed the cards will display a different animation from others and will change the color plus the hidden images will be visibel until the game ends.
 Here's an example of it:
-`insert video here`
+![alt text](https://github.com/hypekeyz/memorygame/raw/master/Desktop%20Screenshot%20right%20cards.png)
+
+#### Winning the game
+When you win the game a screen will display showing the number of stars, moves and time you spent to complete all cards.
+![alt text](https://github.com/hypekeyz/memorygame/raw/master/Mobile%20screenshot%20game%20won.png)
 
 ### Timer
 
