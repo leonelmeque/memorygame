@@ -55,12 +55,14 @@ function endGame() {
     var modal = document.querySelector('.game-won-modal');
     counter = 0;
   
-    const starSpan = document.querySelector("#stars");
-    const movesSpan = document.querySelector(".moves");
-
-    modal.style.display = 'block';
+    const starSpan = document.querySelector('#stars');
+    const movesSpan = document.querySelector('#moves');
+   
     starSpan.textContent = totalStars;
     movesSpan.textContent = numOfMoves;
+    console.log(movesSpan);
+    modal.style.display = 'block';
+   
   }
 }
 
