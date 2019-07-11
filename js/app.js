@@ -115,31 +115,40 @@ function flipCardAnimation(card) {
         background-color:var(--card-selected); 
         animation:flip 0.5s ease;`;
 }
-// Reloads the game
+// Reloads the game I belive this function could have been writen better it is a bit long, but necessary.
 // eslint-disable-next-line no-unused-vars
 function reloadGame() {
   var modal = document.querySelector('.game-won-modal');
   var img = document.querySelector(".stars");
+  /* This was a very quick and lazy way 
+  to reload the stars, but I belive it takes less time :-)
+  */
   img.innerHTML = `<img src="images/baseline-star-24px.svg" alt="star" />
                   <img src="images/baseline-star-24px.svg" alt="star" />
                   <img src="images/baseline-star-24px.svg" alt="star" />`;
   var ul = document.querySelector("ul");
   var cards = [...ul.children];
-  modal.style.display = 'none';
-  shuffle(cards);
+ //Quick way to remove the elements and values of the elements 
+  ul.innerHTML = "";
   movesSpan.textContent = "";
+//Resetting the cards values
   firstSelectedCard = null;
   secondSelectedCard = null;
-  ul.innerHTML = "";
   counter = 0;
   numOfMoves = 0;
+
+//I make usage of the same elements already created in the game to shuffle them again, avoids usage of more resources
+  shuffle(cards);
+
+//Here I am adding the cards with their attributes 
   for (let card of cards) {
     card.children[0].children[0].style.display = "none";
     card.children[0].style.cssText = `pointer-events:auto;
        background-color:var(--card-color);`;
-    fragment.appendChild(card);
-  }
-    ul.appendChild(fragment);
+       fragment.appendChild(card);
+      }
+      ul.appendChild(fragment);
+      modal.style.display = 'none'; // and finaly we can remove the modal from the game
 }
 
 // Points to the clicked events that are our cards

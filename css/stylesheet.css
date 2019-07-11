@@ -3,8 +3,8 @@
   margin: 0;
 }
 
-html, body{
-  height: 100vmax;
+html,body{
+ height: 100%;
 }
 
 :root {
@@ -14,20 +14,23 @@ html, body{
   --card-wrong: #f95b3c;
 }
 
-body{
+body {
+  
   font-family: Arial, Helvetica, sans-serif;
+  background: rgb(238,174,202);
+  background: linear-gradient(180deg, rgba(238,174,202,1) 0%, rgba(81,94,110,1) 100%) fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .grid {
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 100px;
+  grid-template-rows: auto 100px;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "main main"
-  "footer footer";
-  background-repeat: no-repeat; 
-  background: rgb(255,255,255);
-  background: linear-gradient(163deg, rgba(255,255,255,1) 41%, rgba(47,191,214,1) 56%, rgba(90,157,202,1) 67%, rgba(90,157,202,1) 71%, rgba(171,125,209,1) 89%);
+  grid-template-areas:
+    "main main"
+    "footer footer"; 
 }
 /* Game Board Container */
 .container {
@@ -35,7 +38,6 @@ body{
   grid-template-rows: 150px 150px 150px 150px;
   grid-template-columns: 150px 150px 150px 150px;
   grid-gap: 20px 20px;
-  
 }
 
 main {
@@ -46,7 +48,7 @@ main {
   padding: 50px 0px;
 }
 /* Code Adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal */
-.game-won-modal{
+.game-won-modal {
   align-self: center;
   display: none;
   flex-direction: column;
@@ -54,61 +56,90 @@ main {
   z-index: 1;
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vmax;
   padding-top: 350px;
-  background: white;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,0.8) 0%, rgba(148,187,233,1) 100%);
 }
 
 .box {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  display:flex;
+  display: flex;
   background-color: transparent;
   justify-content: center;
   align-items: center;
   perspective: 1000px;
 }
 
-.card-cover{
+.card-cover {
   width: 100%;
   height: 100%;
   border-radius: 10px;
   cursor: pointer;
-  display:flex;
-  background-color:var(--card-color);
+  display: flex;
+  background-color: var(--card-color);
   justify-content: center;
   align-items: center;
   transform-style: preserve-3d;
 }
 
-@keyframes flip{
-  to{
-     transform:rotateY(360deg);
+@keyframes flip {
+  to {
+    transform: rotateY(360deg);
   }
 }
 
-@keyframes shake{
-  0% {transform:rotate(0deg) translateX(0px);}  
-  25% {transform:rotate(-10deg) translateX(-20px);}
-  50% {transform:rotate(10deg) translateX(20px);}
-  75% {transform:rotate(-10deg) translateX(-20px);}
-  100% {transform:rotate(0) translateX(0);}
+@keyframes shake {
+  0% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  25% {
+    transform: rotate(-10deg) translateX(-20px);
+  }
+  50% {
+    transform: rotate(10deg) translateX(20px);
+  }
+  75% {
+    transform: rotate(-10deg) translateX(-20px);
+  }
+  100% {
+    transform: rotate(0) translateX(0);
+  }
 }
 
-@keyframes squeeze{
-   0% {transform:scale(1,1);}
-   60% {transform:scale(1.1,0.9);}
-   70% {transform:scale(0.9,1.1);}
-   80% {transform:scale(1.1,0.9);}
-   90% {transform:scale(0.9,1.1);}
-   100% {transform:scale(1,1);}
+@keyframes squeeze {
+  0% {
+    transform: scale(1, 1);
+  }
+  60% {
+    transform: scale(1.1, 0.9);
+  }
+  70% {
+    transform: scale(0.9, 1.1);
+  }
+  80% {
+    transform: scale(1.1, 0.9);
+  }
+  90% {
+    transform: scale(0.9, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }
 
-@keyframes zoom-in-out{
-    0% {transform: scale(1,1);}
-    10%{transform: scale(0.9,0.9);}
-    100%{transform: scale(1,1)}
+@keyframes zoom-in-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  10% {
+    transform: scale(0.9, 0.9);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }
 
 .board-table {
@@ -116,12 +147,19 @@ main {
   width: 665px;
   height: 665px;
   padding: 30px 30px;
-  background: rgb(0,199,189);
-  background: linear-gradient(163deg, rgba(0,199,189,1) 28%, rgba(16,172,197,1) 46%, rgba(90,157,202,1) 62%, rgba(90,157,202,1) 70%, rgba(171,125,209,1) 89%);
+  background: rgb(0, 199, 189);
+  background: linear-gradient(
+    163deg,
+    rgba(0, 199, 189, 1) 28%,
+    rgba(16, 172, 197, 1) 46%,
+    rgba(90, 157, 202, 1) 62%,
+    rgba(90, 157, 202, 1) 70%,
+    rgba(171, 125, 209, 1) 89%
+  );
   border-radius: 20px;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .score-restart {
@@ -133,25 +171,24 @@ main {
   align-items: center;
 }
 
-.stars{
+.stars {
   justify-self: end;
 }
 
-.moves{
+.moves {
   margin-left: 10px;
 }
 
 span img {
-  display:none;
+  display: none;
   width: 60px;
   height: 60px;
-  cursor:none;
+  cursor: none;
   transform-style: preserve-3d;
- 
 }
 
 /* button css */
-.button{
+.button {
   margin-top: 20px;
   background-color: #00bcc0;
   padding: 5px 10px;
@@ -168,10 +205,9 @@ h1 {
 
 .score-restart p {
   display: inline;
-  
 }
 
-.game-won-modal h2{
+.game-won-modal h2 {
   margin-bottom: 10px;
 }
 
@@ -179,32 +215,63 @@ label {
   cursor: pointer;
 }
 
-footer{
+footer {
   grid-area: footer;
   width: 100%;
+  height: 100%;
+  display: flex;
   text-align: center;
-  font-weight:bold;
-  color:white;
+  font-weight: bold;
+  align-content: center;
+  color: white;
   flex-direction: column;
 }
 
-@media screen and (max-width:720px){
-  .board-table{
+footer p{
+  margin: auto;
+}
+
+@media screen and (max-width: 720px) {
+  .board-table {
     width: 332.5px;
-    height : 332.5px;
+    height: 332.5px;
     padding: 10px 10px;
   }
-  
-  .container{
-  grid-template-rows: 75px 75px 75px 75px;
-  grid-template-columns: 75px 75px 75px 75px;
-  grid-gap: 10px 10px;
+
+  .container {
+    grid-template-rows: 75px 75px 75px 75px;
+    grid-template-columns: 75px 75px 75px 75px;
+    grid-gap: 10px 10px;
   }
-  
-  .game-won-modal{
+
+  .game-won-modal {
     padding-top: 250px;
   }
-  span img{
+  span img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Iphone 5 and smaller screens */
+@media screen and (max-width: 320px) {
+  .board-table {
+    width: 232.5px;
+    height: 232.5px;
+    padding: 10px 10px;
+  }
+
+  .container {
+    grid-template-rows: 50px 50px 50px 50px;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-gap: 10px 10px;
+  }
+
+  
+  .game-won-modal {
+    padding-top: 250px;
+  }
+  span img {
     width: 30px;
     height: 30px;
   }
