@@ -165,7 +165,7 @@ main {
 .score-restart {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-columns: 35% 25% 15% 25% ;
   width: 100%;
   padding-top: 20px;
   align-items: center;

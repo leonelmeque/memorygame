@@ -10,15 +10,13 @@ const cardClass = [
   "watermelon",
   "orange"
 ];
-
+let stopTime;
+let gameStatus = [0,3,0,true,0];
+let [counter,totalStars,numOfMoves,resetTime,seconds] = gameStatus;
 const sound = document.querySelector("audio");
 const gameBoard = document.querySelector(".container"); // grid container for the cards
 let fragment = document.createDocumentFragment();
-let numOfMoves = 0;
-let firstSelectedCard = null;
-let secondSelectedCard = null;
-let counter = 0;
-let totalStars = 3;
+let firstSelectedCard, secondSelectedCard = null;
 const movesSpan = document.querySelector(".moves");
 
 // Resets the cards if they are guessed wrong
@@ -38,23 +36,21 @@ function cardChecker() {
     squeezeCardAnimation(secondSelectedCard);
     counter++;
     endGame();
-    firstSelectedCard = null;
-    secondSelectedCard = null;
   } else {
     updateMoves();
     shakeAnimation(firstSelectedCard);
     shakeAnimation(secondSelectedCard);
-    firstSelectedCard = null;
-    secondSelectedCard = null;
   }
+  firstSelectedCard = secondSelectedCard = null;
 }
 
 // Check if all cards are turned and ends the game
 function endGame() {
   if (counter === 8) {
+    clearInterval(stopTime);
     var modal = document.querySelector('.game-won-modal');
     counter = 0;
-  
+    window.clearInterval(timerTrigger);
     const starSpan = document.querySelector('#stars');
     const movesSpan = document.querySelector('#moves');
    
@@ -62,7 +58,6 @@ function endGame() {
     movesSpan.textContent = numOfMoves;
     console.log(movesSpan);
     modal.style.display = 'block';
-   
   }
 }
 
@@ -117,44 +112,11 @@ function flipCardAnimation(card) {
         background-color:var(--card-selected); 
         animation:flip 0.5s ease;`;
 }
-// Reloads the game I belive this function could have been writen better it is a bit long, but necessary.
-// eslint-disable-next-line no-unused-vars
-function reloadGame() {
-  var modal = document.querySelector('.game-won-modal');
-  var img = document.querySelector(".stars");
-  /* This was a very quick and lazy way 
-  to reload the stars, but I belive it takes less time :-)
-  */
-  img.innerHTML = `<img src="images/baseline-star-24px.svg" alt="star" />
-                  <img src="images/baseline-star-24px.svg" alt="star" />
-                  <img src="images/baseline-star-24px.svg" alt="star" />`;
-  var ul = document.querySelector("ul");
-  var cards = [...ul.children];
- //Quick way to remove the elements and values of the elements 
-  ul.innerHTML = "";
-  movesSpan.textContent = "";
-//Resetting the cards values
-  firstSelectedCard = null;
-  secondSelectedCard = null;
-  counter = 0;
-  numOfMoves = 0;
 
-//I make usage of the same elements already created in the game to shuffle them again, avoids usage of more resources
-  shuffle(cards);
-
-//Here I am adding the cards with their attributes 
-  for (let card of cards) {
-    card.children[0].children[0].style.display = "none";
-    card.children[0].style.cssText = `pointer-events:auto;
-       background-color:var(--card-color);`;
-       fragment.appendChild(card);
-      }
-      ul.appendChild(fragment);
-      modal.style.display = 'none'; // and finaly we can remove the modal from the game
-}
 
 // Points to the clicked events that are our cards
 function cardClickEvents(event) {
+  if(resetTime===true){timerTrigger();}
   if (event.target.nodeName === "SPAN") {
     if (!firstSelectedCard) {
       flipCardAnimation((firstSelectedCard = event));
@@ -165,6 +127,14 @@ function cardClickEvents(event) {
       }
     }
   }
+}
+
+function timerTrigger() {
+  resetTime = false;
+  seconds++;
+  document.getElementById('timer').innerHTML = seconds+' s' ;
+  console.log(seconds);
+  stopTime = setTimeout(timerTrigger,1000);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -180,6 +150,42 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
+}
+
+// Reloads the game I belive this function could have been writen better it is a bit long, but necessary.
+// eslint-disable-next-line no-unused-vars
+function reloadGame() {
+  clearInterval(stopTime);
+  var modal = document.querySelector('.game-won-modal');
+  var img = document.querySelector(".stars");
+  var ul = document.querySelector("ul");
+  var cards = [...ul.children];
+  /* This was a very quick and lazy way 
+  to reload the stars, but I belive it takes less time :-)
+  */
+  img.innerHTML = `<img src="images/baseline-star-24px.svg" alt="star" />
+                  <img src="images/baseline-star-24px.svg" alt="star" />
+                  <img src="images/baseline-star-24px.svg" alt="star" />`;
+
+ //Quick way to remove the elements and values of the elements 
+  ul.innerHTML = movesSpan.textContent = "";
+  document.getElementById('timer').innerHTML = 0+' s' ;
+//Resetting the cards and game values
+  firstSelectedCard = secondSelectedCard = null;
+  [counter,totalStars,numOfMoves,resetTime,seconds] = gameStatus;
+
+//I make usage of the same elements already created in the game to shuffle them again, avoids usage of more resources
+  shuffle(cards);
+
+//Here I am adding the cards with their attributes 
+  for (let card of cards) {
+    card.children[0].children[0].style.display = "none";
+    card.children[0].style.cssText = `pointer-events:auto;
+       background-color:var(--card-color);`;
+       fragment.appendChild(card);
+      }
+      ul.appendChild(fragment);
+      modal.style.display = 'none'; // and finaly we can remove the modal from the game
 }
 
 // Starting the game
