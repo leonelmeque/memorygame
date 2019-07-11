@@ -51,9 +51,11 @@ function endGame() {
     var modal = document.querySelector('.game-won-modal');
     counter = 0;
     window.clearInterval(timerTrigger);
-    const starSpan = document.querySelector('#stars');
-    const movesSpan = document.querySelector('#moves');
-   
+    var starSpan = document.querySelector('#stars');
+    var movesSpan = document.querySelector('#moves');
+    var totalTime = document.querySelector('.total-time');
+
+    totalTime.textContent = seconds+' seconds';
     starSpan.textContent = totalStars;
     movesSpan.textContent = numOfMoves;
     console.log(movesSpan);
