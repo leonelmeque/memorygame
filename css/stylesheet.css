@@ -31,9 +31,10 @@ body {
 .grid {
   height: 100%;
   display: grid;
-  grid-template-rows: auto 100px;
+  grid-template-rows: auto auto 100px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
+    "ads ads"
     "main main"
     "footer footer";
 }
@@ -45,6 +46,10 @@ body {
   grid-gap: 20px 20px;
 }
 
+.ads{
+  grid-area: ads;
+  width:100%;
+}
 main {
   grid-area: main;
   width: 100%;

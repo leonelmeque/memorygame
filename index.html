@@ -5,12 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+    <script
+      async
+      custom-element="amp-ad"
+      src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"
+    ></script>
+
     <link rel="stylesheet" href="css/stylesheet.css" />
     <title>Fruit Memory Game</title>
   </head>
 
   <body>
     <div class="grid">
+      <div class="ads">
+          <amp-ad 
+          width="100vw"
+          height="320"
+          type="adsense"
+          data-ad-client="ca-pub-2760865459422331"
+          data-ad-slot="4257702809"
+          data-auto-format="rspv"
+          data-full-width
+        >
+          <div overflow></div>
+        </amp-ad>
+      </div>
+      
+
       <main>
         <h1>Fruit Memory Game</h1>
         <div class="score-restart">
@@ -21,7 +42,9 @@
           </div>
 
           <p><span class="moves">0</span> Moves</p>
-          <label class = "timer" for="">Your Time: <span id="timer">0 s</span></label> 
+          <label class="timer" for=""
+            >Your Time: <span id="timer">0 s</span></label
+          >
           <label onclick="reloadGame()"
             ><img src="images/baseline-refresh-24px.svg" alt="reload"
           /></label>
