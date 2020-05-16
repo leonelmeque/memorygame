@@ -1,4 +1,10 @@
-const urlToCache = ["/memorygame","/memorygame/index.html", "/audio/*", "/js/app.js", "/images/*,'/css/stylesheet.css"];
+const urlToCache = [
+  "/memorygame",
+  "/memorygame/index.html",
+  "/audio/*",
+  "/js/app.js",
+  "/images/*,'/css/stylesheet.css",
+];
 const staticCache = "memory-game-v1";
 
 self.addEventListener("install", (e) => {
@@ -39,9 +45,9 @@ self.addEventListener("fetch", (event) => {
         return response;
       }
       return fetch(event.request).then((response) => {
-          /**
-           * ensuring if the response is valid, checking status code 
-           */
+        /**
+         * ensuring if the response is valid, checking status code
+         */
         if (!response || response.status != 200 || response.type !== "basic") {
           return response;
         }
@@ -58,3 +64,14 @@ self.addEventListener("fetch", (event) => {
 });
 
 //activate service worker
+self.addEventListener("activate", (event) => {
+  event.waitUtil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheObj) => {
+          return cacheObj!=staticCache;
+        })
+      );
+    })
+  );
+});
