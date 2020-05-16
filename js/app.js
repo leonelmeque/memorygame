@@ -8,7 +8,7 @@ const cardClass = [
   "coconut",
   "pineapple",
   "watermelon",
-  "orange"
+  "orange",
 ];
 let stopTime;
 let gameStatus = [0, 3, 0, true, 0];
@@ -61,9 +61,19 @@ function endGame() {
     movesSpan.textContent = numOfMoves;
     console.log(movesSpan);
     modal.style.display = "block";
-  }
-}
 
+    let user = {
+      numOfMoves: numOfMoves,
+      time: seconds,
+      totalStars: totalStars,
+    };
+
+    localStorage.setItem(1, JSON.stringify(user));
+  }
+
+  console.log("Local Storage" + localStorage.getItem(1));
+}
+console.log("Local Storage" + localStorage.getItem(1));
 // Updates the number of moves the player had to do to finish the game
 function updateMoves() {
   movesSpan.textContent = ++numOfMoves;
@@ -137,7 +147,6 @@ function timerTrigger() {
   resetTime = false;
   seconds++;
   document.getElementById("timer").innerHTML = seconds + " s";
-  console.log(seconds);
   stopTime = setTimeout(timerTrigger, 1000);
 }
 
@@ -195,6 +204,7 @@ function reloadGame() {
 // Starting the game
 function startGame() {
   var cards = [...cardClass, ...cardClass];
+  const setting = JSON.parse(localStorage.getItem(2));
   shuffle(cards);
 
   for (let card of cards) {
@@ -213,10 +223,43 @@ function startGame() {
     cardItem.appendChild(cardCover);
     fragment.appendChild(cardItem);
   }
+
+  //getting settings from localStorage
+  if(!setting){
+    localStorage.setItem(2, JSON.stringify({mode:'white'}));
+     alert('White')
+  }else if(setting.mode==='dark'){
+     document.querySelector('body').setAttribute('class','theme-dark')
+  }
+
   gameBoard.appendChild(fragment);
   gameBoard.addEventListener("click", cardClickEvents);
   console.log("Game started");
 }
 
+const darkMode = () => {
+  const settings = JSON.parse(localStorage.getItem(2));
+  const body = document.querySelector("body");
+  let userSettings = {
+  };
+  
+ 
+  if(settings!==null){
+    console.log('yes')
+    switch (settings.mode) {
+      case "white":
+        body.setAttribute('class','theme-dark')
+        userSettings.mode='dark';
+        break;
+      case "dark":
+        body.setAttribute('class','theme-light')
+        userSettings.mode='white';
+        break;
+        default: break;
+    }
+  }
+ 
+  localStorage.setItem(2, JSON.stringify(userSettings));
+};
 // Starts the game
 startGame();

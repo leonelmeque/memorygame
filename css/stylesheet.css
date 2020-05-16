@@ -28,6 +28,28 @@ body {
   background-repeat: no-repeat;
 }
 
+.theme-light{
+  background: rgb(238, 174, 202);
+  background: linear-gradient(
+      180deg,
+      rgba(238, 174, 202, 1) 0%,
+      rgba(81, 94, 110, 1) 100%
+    )
+    fixed;
+}
+
+.theme-dark{
+  
+  background: rgb(41, 41, 41);
+  background: linear-gradient(
+      180deg,
+      rgb(46, 46, 46) 0%,
+      rgb(122, 122, 122) 100%
+    )
+    fixed;
+}
+
+
 .grid {
   height: 100%;
   display: grid;
@@ -41,8 +63,8 @@ body {
 /* Game Board Container */
 .container {
   display: grid;
-  grid-template-rows: 150px 150px 150px 150px;
-  grid-template-columns: 150px 150px 150px 150px;
+  grid-template-rows: 120px 120px 120px 120px;
+  grid-template-columns: 120px 120px 120px 120px;
   grid-gap: 20px 20px;
 }
 
@@ -167,8 +189,7 @@ h1 {
 
 .board-table {
   align-self: center;
-  width: 665px;
-  height: 665px;
+  
   padding: 30px 30px;
   background: rgb(0, 199, 189);
   background: linear-gradient(
