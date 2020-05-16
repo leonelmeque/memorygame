@@ -26,7 +26,7 @@ const movesSpan = document.querySelector(".moves");
 //service worker registration
 if('serviceWorker' in navigator){
   console.log('CLIENT: service worker registration in progess.');
-  navigator.serviceWorker.register('../sw.js').then(()=>{
+  navigator.serviceWorker.register('/memorygame/sw.js').then(()=>{
     console.log('CLIENT: service worker registration complete.');
   },()=>{
     console.log('CLIENT: service worker registration failure');
