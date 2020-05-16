@@ -1,4 +1,6 @@
 "use strict";
+
+
 // Array with classes of every card
 const cardClass = [
   "apple",
@@ -19,6 +21,19 @@ let fragment = document.createDocumentFragment();
 let firstSelectedCard,
   secondSelectedCard = null;
 const movesSpan = document.querySelector(".moves");
+
+
+//service worker registration
+if('serviceWorker' in navigator){
+  console.log('CLIENT: service worker registration in progess.');
+  navigator.serviceWorker.register('../sw.js').then(()=>{
+    console.log('CLIENT: service worker registration complete.');
+  },()=>{
+    console.log('CLIENT: service worker registration failure');
+  });
+}else {
+  console.log('CLIENT: service worker is not supported')
+}
 
 // Resets the cards if they are guessed wrong
 function wrongCards(card) {
