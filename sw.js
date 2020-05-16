@@ -1,4 +1,4 @@
-const urlToCache = ["/{repository}","/{repository}/index.html", "/audio/*", "/js/app.js", "/images/*,'/css/stylesheet.css"];
+const urlToCache = ["/memorygame","/memorygame/index.html", "/audio/*", "/js/app.js", "/images/*,'/css/stylesheet.css"];
 const staticCache = "memory-game-v1";
 
 self.addEventListener("install", (e) => {
